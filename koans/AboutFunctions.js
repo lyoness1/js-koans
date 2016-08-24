@@ -94,9 +94,15 @@ describe("About Functions", function() {
       return name + " totally rules!";
     };
 
+    // praiseSinger is a variable storing an object. 
+    // the key givePraise stores a reference to the appendRules function
+    // when praiseSinger.givePraise is CALLED, appendRules is called. 
     var praiseSinger = { givePraise: appendRules };
     expect(praiseSinger.givePraise("John")).toBe("John rules!");
 
+    // praiseSinger.givePraise is reassigned to the value appendDoubleRules
+    // function reference. Now praiseSinger.givePraise() will call 
+    // appendDoubleRules. 
     praiseSinger.givePraise = appendDoubleRules;
     expect(praiseSinger.givePraise("Mary")).toBe("Mary totally rules!");
 
