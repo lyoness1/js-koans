@@ -37,7 +37,7 @@ describe("About Arrays", function() {
     expect(fourNumberArray.length).toBe(6);
 
     var tenEmptyElementArray = new Array(10);
-    // tenEmptyElementArray = [undefined x 10]
+    // tenEmptyElementArray = [undefined x 10] 
     expect(tenEmptyElementArray.length).toBe(10);
 
     tenEmptyElementArray.length = 5;
