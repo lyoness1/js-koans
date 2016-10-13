@@ -4,7 +4,7 @@ describe("About Mutability", function() {
     var aPerson = {firstname: "John", lastname: "Smith" };
     aPerson.firstname = "Alan";
 
-    expect(aPerson.firstname).toBe(FILL_ME_IN);
+    expect(aPerson.firstname).toBe("Alan");
   });
 
   it("should understand that constructed properties are public and mutable", function () {
@@ -16,7 +16,7 @@ describe("About Mutability", function() {
     var aPerson = new Person ("John", "Smith");
     aPerson.firstname = "Alan";
 
-    expect(aPerson.firstname).toBe(FILL_ME_IN);
+    expect(aPerson.firstname).toBe("Alan");
   });
 
   it("should expect prototype properties to be public and mutable", function () {
@@ -30,15 +30,22 @@ describe("About Mutability", function() {
     };
 
     var aPerson = new Person ("John", "Smith");
-    expect(aPerson.getFullName()).toBe(FILL_ME_IN);
+    expect(aPerson.getFullName()).toBe("John Smith");
 
     aPerson.getFullName = function () {
       return this.lastname + ", " + this.firstname;
     };
 
-    expect(aPerson.getFullName()).toBe(FILL_ME_IN);
+    expect(aPerson.getFullName()).toBe("Smith, John");
   });
 
+// This is complicated... 
+// the prototype Person has an attribute fullName
+// the prototype has three methods - get first, last, and full names
+// aPerson is constructed with the first and last names of "John Smith"
+// but these names are not attributes on the object? WHERE ARE THEY STORED??
+// aPerson's method getFullName is overwritten for that instance
+// aPerson's getFullName method returns the instance's first and last names
   it("should know that variables inside a constructor and constructor args are private", function () {
     function Person(firstname, lastname)
     {
@@ -54,15 +61,15 @@ describe("About Mutability", function() {
     aPerson.lastname = "Andrews";
     aPerson.fullName = "Penny Andrews";
 
-    expect(aPerson.getFirstName()).toBe(FILL_ME_IN);
-    expect(aPerson.getLastName()).toBe(FILL_ME_IN);
-    expect(aPerson.getFullName()).toBe(FILL_ME_IN);
+    expect(aPerson.getFirstName()).toBe("John");
+    expect(aPerson.getLastName()).toBe("Smith");
+    expect(aPerson.getFullName()).toBe("John Smith");
 
     aPerson.getFullName = function () {
       return aPerson.lastname + ", " + aPerson.firstname;
     };
 
-    expect(aPerson.getFullName()).toBe(FILL_ME_IN);
+    expect(aPerson.getFullName()).toBe("Andrews, Penny");
   });
 
 });
